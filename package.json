@@ -1,0 +1,23 @@
+{
+  "name": "bcit-comp2537-assignment3",
+  "version": "1.0.0",
+  "description": "bcit-comp2537-assignment3",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jiarui Xing",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.1",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YuanXiQWQ/BCIT-COMP2537-Assignment3"
+  },
+  "homepage": "https://bcit-comp2537-assignment3.onrender.com"
+}

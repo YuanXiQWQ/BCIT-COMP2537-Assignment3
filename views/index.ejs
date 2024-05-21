@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Assignment 3</title>
+</head>
+<body>
+<h1>Pokedex</h1>
+<p>Total Pokémon: <%= total %></p>
+<p>Showing Pokémon: <%= pokemonList.length %></p>
+
+<div id="filter">
+    <form action="/" method="get">
+        <% types.forEach(type => { %>
+            <label>
+                <input type="checkbox" name="type" value="<%= type.name %>" <%= selectedTypes.includes(type.name) ? 'checked' : '' %>>
+                <%= type.name %>
+            </label>
+        <% }) %>
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+<div id="pokemon-list">
+    <% pokemonList.forEach(pokemon => { %>
+        <div class="pokemon-card" data-name="<%= pokemon.name %>">
+            <img src="<%= pokemon.image %>" alt="<%= pokemon.name %>">
+            <p><%= pokemon.name %></p>
+        </div>
+    <% }) %>
+</div>
+
+<div id="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="/?page=<%= currentPage - 1 %>">&laquo; Previous</a>
+    <% } %>
+
+    <% let startPage = Math.max(1, currentPage - 2); %>
+    <% let endPage = Math.min(totalPages, currentPage + 2); %>
+
+    <% if (startPage > 1) { %>
+        <a href="/?page=1">1</a>
+        <% if (startPage > 2) { %>
+            <span>...</span>
+        <% } %>
+    <% } %>
+
+    <% for (let i = startPage; i <= endPage; i++) { %>
+        <a href="/?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+
+    <% if (endPage < totalPages) { %>
+        <% if (endPage < totalPages - 1) { %>
+            <span>...</span>
+        <% } %>
+        <a href="/?page=<%= totalPages %>"><%= totalPages %></a>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+        <a href="/?page=<%= currentPage + 1 %>">Next &raquo;</a>
+    <% } %>
+</div>
+
+<div id="pokemon-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" src="" alt="">
+        <p>Height: <span id="modal-height"></span></p>
+        <p>Weight: <span id="modal-weight"></span></p>
+        <div class="divider"></div>
+        <p>Types: <span id="modal-types"></span></p>
+        <div class="divider"></div>
+        <p>Abilities: <span id="modal-abilities"></span></p>
+        <div class="divider"></div>
+        <p>Base Stats:</p>
+        <ul id="modal-stats"></ul>
+    </div>
+</div>
+
+<script src="/js/scripts.js"></script>
+</body>
+</html>
